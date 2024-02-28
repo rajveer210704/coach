@@ -1,0 +1,96 @@
+#include<stdio.h>
+struct node
+{
+    int item;
+    struct node *next;
+};
+struct node *head;
+void beginsert()
+{
+    struct node *ptr1;
+    ptr1=malloc(sizeof(struct node*));
+    if(ptr1==NULL)
+    printf("\nOverflow");
+    else
+    {
+        int it;
+        printf("\nEnter a value-");
+        scanf("%d",&it);
+        ptr1->item=it;
+        ptr1->next=head;
+        head=ptr1;
+    }
+}
+void endinsert()
+{
+    struct node *ptr;
+    ptr=malloc(sizeof(struct node*));
+    if(ptr==NULL)
+    printf("\nOverflow.");
+    else
+    {
+        int it;
+        struct node *traverse;
+        traverse=head;
+        printf("\nEnter a value-");
+        scanf("%d",&it);
+        ptr->item=it;
+        while(traverse->next!=NULL)
+        traverse=traverse->next;
+        traverse->next=ptr;
+        ptr->next=NULL;
+    }
+}
+void randominsert()
+{
+    struct node *ptr;
+    struct node *traverse;
+    ptr=malloc(sizeof(struct node*));
+    traverse=head;
+    if(ptr==NULL)
+    printf("\nOverflow.");
+    else
+    {
+        int loc,i,it;
+        printf("\nEnter a location-");
+        scanf("%d",&loc);
+        printf("\nEnter a value-");
+        scanf("%d",&it);
+        for(i=1;i<=loc;i++)
+        traverse=traverse->next;
+        ptr->next=traverse->next;
+        traverse->next=ptr;
+        ptr->item=it;
+    }
+}
+void printing()
+{
+    struct node *ptr1;
+    ptr1=head;
+    while(ptr1!=NULL)
+    {
+        printf("%d",ptr1->item);
+        ptr1=ptr1->next;
+    }
+}
+void main()
+{
+    int i=0,ch;
+    while(i==0)
+    {
+        printf("\nEnter your choice-\n1.Insert at the benginning.\n2.Insert at the end.\n3.Insert at a random postion.\n4.Print the list.\n5.Exit.\n");
+        scanf("%d",&ch);
+        if(ch==1)
+        beginsert();
+        else if(ch==2)
+        endinsert();
+        else if(ch==3)
+        randominsert();
+        else if(ch==4)
+        printing();
+        else if(ch==5)
+        i=999;
+        else
+        printf("\nWrong Fucking Choice Nigger!");
+    }
+}
